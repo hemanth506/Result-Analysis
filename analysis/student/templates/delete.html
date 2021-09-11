@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+
+{% block div %}
+<h2>Hello</h2>
+<form action="{% url 'details' %}" method='POST'>
+    {% csrf_token %}
+    <button class='btn btn-info' value="submit">Delete</button>
+</form>
+{% endblock %}

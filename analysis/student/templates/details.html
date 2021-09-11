@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block div %}
+<div class="justify-content-center pt-3">
+  {% if submitted %}
+    <h3>Your form is submitted</h3>
+  {% else %}
+    <div>
+      <h3>Add Student</h3>
+      <form method="POST" action="{% url 'details' %}">
+        {% csrf_token %}
+        <div class='pt-3'>
+          {{ form.as_p }}
+        </div>
+        <div class='pt-3 px-5'>        
+          <button type="submit" class="btn btn-primary ">Submit</button>
+        </div>
+      </form>
+    </div>
+    {% endif %}
+</div>
+<div>
+  <div class="container justify-content-center pt-3">
+    <br/>
+    <h4>All Student</h4><br>
+    <table>
+      <tr>
+        <th class="px-3">Name</th>
+        <th class="px-3">Roll Number</th>
+        <th class="px-3">Date of birth</th>
+      </tr>
+    {% for lt in list %}
+      <tr>
+        <td class="px-3">{{ lt.name }}</td>
+        <td class="px-3">{{ lt.rollNum }}</td>
+        <td class="px-3">{{ lt.dob }}</td>
+        <td><a class='btn btn-info' href='{% url "update" lt.id %}'>Edit</a></td>
+        <td><a class='btn btn-danger' href='{% url "delete" lt.id %}'>Delete</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+  </div>
+  <footer>
+    <a href="{% url 'addMark' %}" class="link-warning">Add marks</a>
+    <a href="{% url 'result' %}" class="link-info">View analysis</a>
+  </footer>
+</div>
+
+{% endblock %}
+
+
+
+

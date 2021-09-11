@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block div %}
+<div class="justify-content-center pt-3">
+  {% if submitted %}
+  <h3>Your form is submitted</h3>
+  {% else %}
+  <div>
+      <h3>Upload marks</h3>
+      <form action="{% url 'addMark' %}" method="POST">
+        {% csrf_token %}
+          <div class='pt-3'>
+            {{ form.as_p }}
+          </div>
+          <div class='pt-3 px-5'>        
+            <button type="submit" class="btn btn-primary ">Submit</button>
+          </div>
+      </form>
+  </div>
+  {% endif %}
+</div>
+
+<div>
+  <div class="container justify-content-center pt-3">
+    <h4>All Student</h4>
+    <table>
+      <tr>
+        <th class="px-3">Roll Number</th>
+        <th class="px-3">Mark</th>
+      </tr>
+    {% for lt in list %}
+      <tr>
+        <td class="px-3">{{ lt }}</td>
+        <td class="px-3">{{ lt.mark }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  </div>
+  <footer>
+    <a href="{% url 'result' %}" class="link-info">View analysis</a>
+    <a href="{% url 'details' %}" class="link-primary">Add student</a>
+  </footer>
+</div>
+
+{% endblock %}

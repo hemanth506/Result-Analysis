@@ -1,0 +1,33 @@
+
+{% extends 'base.html' %}
+{% block div%}
+<div style="padding: 50px;" >
+    <h3>Result Analysis</h3>
+    <div>
+      <div>
+      <h5>Total number of students:</h5> <p>{{count_of_std}}</p>
+    </div>
+    <div>
+      <h5>Total number of students based on grade:</h5>
+      {% for grade,k in count_each_grp.items %}
+        <p>{{grade}} Grade: {{k}}</p>
+      {% endfor %}
+    </div>
+    <div>
+      <h5>Distinction%</h5> <p>{{distinction}}</p>
+    </div>
+
+    <div>
+      <h5>First Class%</h5> <p>{{firstclass}}</p>
+    </div>
+
+    <div>
+      <h5>Pass%</h5> <p>{{pass}}</p>
+    </div>
+    </div>
+    <footer>
+      <a href="{% url 'addMark' %}" class="link-warning">Add marks</a>
+      <a href="{% url 'details' %}" class="link-primary">Add student</a>
+    </footer>
+</div>
+{% endblock %}

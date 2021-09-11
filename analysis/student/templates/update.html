@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block div %}
+
+<h2 class='pt-3 pb-2'>Update Student</h2>
+<form action='' method='POST'>
+    {% csrf_token %}
+    {{form.as_p}}
+    <a class='btn btn-secondary' href="{% url 'details' %}">Cancel</a>
+    <button class='btn btn-info' value="submit">Update</button>
+    
+
+</form>
+{% endblock %}
